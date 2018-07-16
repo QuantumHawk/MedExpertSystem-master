@@ -1,0 +1,94 @@
+﻿@model MedExpertSystem.Models.QuestionsDataDefinitionModel
+           @using MedExpertSystem.Models
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int k = 0;
+}
+
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+
+<div class="form-group">
+    <div class="controls col-xs-12 col-md-12">
+        <select id="startUpTime" name="StartUpTime" class="form-control">
+            <option value="-1">Вопрос по энтропии</option>
+            @for (int i = 0; i < @QuestionsDataDefinitionModel.Queastions.Length; i++)
+            {
+                <option value=@i.ToString()>@QuestionsDataDefinitionModel.Diagnosis[i]</option>
+            }
+        </select>
+    </div>
+</div>
+
+@*<select id="startUpTime" name="StartUpTime" class="form-control">
+    @for (int i = 0; i < @Model.Queastions.Length; i++)
+    {
+        <option value=@i.ToString()>@Model.Queastions[i]</option>
+    }
+</select>*@
+<ul hidden id="questions">
+    <li value="-1">@Model.QuestionAnswerOptionOne</li>
+    @for (int i = 0; i < @QuestionsDataDefinitionModel.Queastions.Length; i++)
+    {
+        <li value=@i.ToString()>@QuestionsDataDefinitionModel.Queastions[i]</li>
+    }
+</ul>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="center-block" style="text-align: center">
+            Вопрос по симптому:
+        </h3>
+        <h4>
+
+        </h4>
+        <form action="@Url.Action("QuestionForm","Home",new {index = Model.Index})" method="post">
+            <input type="hidden" value="@Model.Index" name="index"/>
+            <div class="radio">
+                <label><input type="radio" name="criteri" value="1">1 критерий </label>
+                <label><input type="radio" name="criteri" value="2">2 критерий</label>
+            </div>
+            <hr/>
+           @* <h4 style="text-align: center">@Model.QuestionAnswerOptionOne</h4><br/> <br/>*@
+            <h4 style="text-align: center">
+                <label class="control-label" for="startUpTimeParam1" id="startUpParam1Label">@Model.QuestionAnswerOptionOne</label>
+            </h4><br /> <br />
+            <input type="hidden" id="startUp" value="@Model.QuestionAnswerOptionOne" name="code" />
+            @*<input type="hidden" id="startUp" value="@QuestionsDataDefinitionModel.Queastions[0].ToString()" name="code" />*@
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-lg-offset-3 sec-1-btn text-center">
+                        <button name="answer" value="0" class="btn btn-success btn-block">ДА</button><br /><br />
+                    </div>
+                    <div class="col-lg-3 sec-1-btn text-center">
+                        <button name="answer" value="1" data- class="btn btn-danger btn-block">НЕТ</button><br /><br />
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <button name="answer" value="2" class="btn btn-lg btn-primary">Следующий вопрос</button>
+            <button name="answer" value="3" class="btn btn-lg btn-primary">Закончить тестирование</button>
+        </form>
+    </div>
+</div>
+
+<script>
+
+    function startUpChange() {
+        var theValue = $("#startUpTime").find("option:selected").val();
+        var question = $("#questions li[value=" + theValue + "]").text();
+        $('#startUpParam1Label').text(question);
+
+        $('#startUp').val(question);
+    }
+
+    $("#startUpTime").change(function () {
+        startUpChange();
+    });
+
+</script>
+
+@*<button name="answer" value="0" class="btn btn-success btn-block">ДА</button><br /><br />
+<button name="answer" value="1" class="btn btn-success btn-block">НЕТ</button><br /> <br />*@

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MedExpertSystem.BundleConfig" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.FilterConfig" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.RouteConfig" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Expert" Collapsed="true">
+    <Position X="6.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Database\Expert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.MvcApplication" Collapsed="true">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Controllers.BaseController" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\BaseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Controllers.HomeController" Collapsed="true">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>glAAABGABBAAAADAAAACASzEAAEmAACBCAFQAAAAIAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Database.QuestionsContent" Collapsed="true">
+    <Position X="8.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAACAAAAAAAgAAAIAAAAAA=</HashCode>
+      <FileName>Database\QuestionsContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Database.TibetanTestData" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Database\TibetanTestData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Globals.Globals" Collapsed="true">
+    <Position X="6.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Globals\Globals.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Models.ApplicationDbContext" Collapsed="true">
+    <Position X="8.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Models.QuestionsDataDefinitionModel" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAkAAAAAAAA=</HashCode>
+      <FileName>Models\QuestionsDataDefinitionModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Models.SiteContentDefinitionModel" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SiteContentDefinitionModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedExpertSystem.Models.TibetanQuestionsModel" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAEAAQAAAIAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Models\TibetanQuestionsModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

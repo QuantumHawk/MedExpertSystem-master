@@ -1,0 +1,170 @@
+﻿@using MedExpertSystem.Database
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/Chart.js"></script>
+<script src="~/Scripts/plotly-latest.min.js"></script>
+
+
+    <canvas id="myChart" width="1200" height="400"></canvas>    
+@*@{
+    List<double> data = (List<double>)Session["data_res"];
+}*@
+<script>
+    $(function () {
+
+
+        var label = [];
+        @for (var i = 1; i < @UserAnswer.ListEntropy1.Length+1; i++) {
+            @:label.push("@i");;
+        }
+        var list1 = [];
+        var list2 = [];
+        var list3 = [];
+        var list4 = [];
+        var list5 = [];
+
+
+        @foreach (var d in @UserAnswer.List1)
+        {
+            @:list1.push("@d");
+        }
+
+
+        @foreach (var d in @UserAnswer.List2)
+        {
+            @:list2.push("@d");
+        }
+
+        @foreach (var d in @UserAnswer.List3)
+        {
+            @:list3.push("@d");
+        }
+
+        @foreach (var d in @UserAnswer.List4)
+        {
+            @:list4.push("@d");
+        }
+
+        @foreach (var d in @UserAnswer.List5)
+        {
+            @:list5.push("@d");
+        }
+        // Step 3. Create a data object
+        var data = {
+            labels: label,
+            datasets: [
+                {
+                    label: "D1",
+                    fillColor: "rgba(0,0,0,0)", // magenta
+                    strokeColor: "rgba(153,0,76,1)", // magenta
+                    pointColor: "rgba(153,0,76,1)", // magenta
+                    pointStrokeColor: "#fff", // white
+                    pointHighlightFill: "#fff", // white
+                    pointHighlightStroke: "rgba(153,0,76,1)", // magenta
+                    data: list1
+                },
+                {
+                    label: "D2",
+                    fillColor: "rgba(0,0,0,0)",
+                    strokeColor: "rgba(76,0,153,1)",
+                    pointColor: "rgba(76,0,153,1)",
+                    pointStrokeColor: "#fff", // white
+                    pointHighlightFill: "#fff", // white
+                    pointHighlightStroke: "rgba(76,0,153,1)",
+                    data: list2
+                },
+                {
+                    label: "D3",
+                    fillColor: "rgba(0,0,0,0)",
+                    strokeColor: "rgba(0, 230, 230,1)",
+                    pointColor: "rgba(0, 230, 230,1)",
+                    pointStrokeColor: "#fff", // white
+                    pointHighlightFill: "#fff", // white
+                    pointHighlightStroke: "rgba(0, 230, 230,1)",
+                    data:list3
+                },
+                {
+                    label: "D4",
+                    fillColor: "rgba(0,0,0,0)",
+                    strokeColor: "rgba(230, 230, 0,1)",
+                    pointColor: "rgba(230, 230, 0,1)",
+                    pointStrokeColor: "#fff", // white
+                    pointHighlightFill: "#fff", // white
+                    pointHighlightStroke: "rgba(230, 230, 0,1)",
+                    data: list4
+                },
+                {
+                    label: "D5",
+                    fillColor: "rgba(0,0,0,0)",
+                    strokeColor: "rgba(255, 153, 0,1)",
+                    pointColor: "rgba(255, 153, 0,1)",
+                    pointStrokeColor: "#fff", // white
+                    pointHighlightFill: "#fff", // white
+                    pointHighlightStroke: "rgba(0, 0, 153,1)",
+                    data: list5
+                }
+            ]
+        };
+
+        // Step 2. Get the context of the canvas element we want to select
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var myNewChart = new Chart(ctx).Line(data, {
+            ///Boolean - Whether grid lines are shown across the chart
+            scaleShowGridLines: true,
+
+            //String - Colour of the grid lines
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+
+            //Number - Width of the grid lines
+            scaleGridLineWidth: 1,
+
+            //Boolean - Whether to show horizontal lines (except X axis)
+            scaleShowHorizontalLines: true,
+
+            //Boolean - Whether to show vertical lines (except Y axis)
+            scaleShowVerticalLines: true,
+
+            //Boolean - Whether the line is curved between points
+            bezierCurve: true,
+
+            //Number - Tension of the bezier curve between points
+            bezierCurveTension: 0.4,
+
+            //Boolean - Whether to show a dot for each point
+            pointDot: true,
+
+            //Number - Radius of each point dot in pixels
+            pointDotRadius: 4,
+
+            //Number - Pixel width of point dot stroke
+            pointDotStrokeWidth: 1,
+
+            //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+            pointHitDetectionRadius: 20,
+
+            //Boolean - Whether to show a stroke for datasets
+            datasetStroke: true,
+
+            //Number - Pixel width of dataset stroke
+            datasetStrokeWidth: 2,
+
+            //Boolean - Whether to fill the dataset with a colour
+            datasetFill: true,
+        });
+
+    });
+
+    @*var data = [{
+            x: ["Android Developer", "Java Developer", "C++ Developer", "JavaScript Developer",
+                        "PHP Developer", "Database Administrator", "System Administrator", "QA Manager", "Project Manager", "Frontend Develoepr"],
+            y: [@data.ElementAt(0), @data.ElementAt(1), @data.ElementAt(2), @data.ElementAt(3),@data.ElementAt(4), @data.ElementAt(5),@data.ElementAt(6),@data.ElementAt(7),@data.ElementAt(8),@data.ElementAt(9)],
+            type: 'bar'
+        }];
+
+        Plotly.newPlot('myDiv', data);*@
+
+
+</script>
+

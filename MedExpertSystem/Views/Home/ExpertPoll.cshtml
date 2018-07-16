@@ -1,0 +1,184 @@
+﻿@using MedExpertSystem.Database
+@using MedExpertSystem.Models
+@model System.Data.DataTable
+@using System.Data;
+@{
+    ViewBag.Title = "ExpertPoll";
+}
+
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">*@
+<script src="~/Scripts/Chart.js"></script>
+
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+@*<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> Uncaught TypeError: Cannot read property 'Constructor' of undefined *@ 
+<link href="~/Scripts/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+<script src="~/Scripts/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<script src="~/Scripts/newrecord.js"></script>
+
+<!-- Include the plugin's CSS and JS: -->
+<script type="text/javascript" src="~/Scripts/dist/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="~/Scripts/dist/css/bootstrap-multiselect.css" type="text/css" />
+
+
+<div class="row">
+    <h2>Инструкция</h2>
+    <div class="alert alert-success" role="alert">
+    Нужную таблицу можно выгрузить по: <strong> диагнозам, вопросам и фильтру.</strong><br />
+    Аккуратно с фильтром! Вводить знаки можно только с.о.: <strong>">=0.2 (число для демострации); "<=0.2"; ">0.2"; "< 0.2" </strong><br />
+    По-умолчанию загружается таблица с Априорными вероятностями. В начале работы необходмо определиться с таблицей.
+    Выберите ее в соответствующей вкладке, далее ОБЯЗАТЕЛЬНО необходимо выбрать перечень <strong> Болезней и Вопросов</strong> в элементах:<br />
+    - <strong>"Выберите вопросы для отображения"</strong>;<br />
+    - <strong>"Выберите диагнозы для отображения"</strong>.<br />
+    После выбора необходимо нажать на кнопку <strong>"Загрузить выбранную таблицу".</strong><br />
+    Фильтр - инструмент для загрузки данных по заданному фильтру. После задания фильтра нажмите кнопку "Обновить таблицу".<br />
+    <strong>Такая таблица редактированию не подлежит.</strong><br />
+    <strong> Редактирование таблицы:</strong><br />
+    - нажмите на ячейчу с числом, либо "None" ("Пустую");<br />
+    - введите значение (галочка означает принять изменения, а крестик - удалить значение).<br />
+    Внесенные изменения сохраняются автоматически.<br />
+</div>
+</div>
+
+
+
+<table id="user" class="table table-hover">
+    @*<thead>
+            <tr>
+                <th><a href="#" class="myeditable editable editable-click editable-empty" id="new_username" data-type="text" data-name="username" data-original-title="Enter username">Username</a> </th>
+                <th><a href="#" id="Code" data-type="text" data-placement="right" data-title="Enter username" class="editable editable-click">Код</a>  </th>
+                <th><a href="#" id="d" data-type="text" data-placement="right" data-title="Enter username" class="editable editable-click">Диагноз</a>  </th>
+                <th><a href="#" id="v" data-type="text" data-placement="right" data-title="Enter username" class="editable editable-click">Вероятность</a>  </th>
+            </tr>
+        </thead>*@
+    @*<table class="table table-bordered">*@
+    <thead>
+        <tr>
+            @foreach (DataColumn col in Model.Columns)
+            {
+                <th><h5>@col.Caption </h5></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            int i=0;
+               <tr>
+                @foreach (var cell in row.ItemArray)
+                {
+                  
+                    <td>
+                        <h5>
+                            <a href="#" class="myeditable editable editable-click editable-empty" data-pk=@row["ID"].ToString() data-name=@i.ToString() data-type ="text" data-original-title="Введите значение">@cell.ToString()</a> @*data-name=@Model.Columns[i].Caption*@
+                        </h5>
+                    </td>
+                    i++;
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+<!-- Build your select: -->
+
+<!-- Initialize the plugin: -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#diagnosis-list').multiselect(
+            {
+                nonSelectedText: 'Выберите диагнозы для отображения',
+                nSelectedText: 'выбрано',
+                allSelectedText: 'Все выбраны'
+            });
+    });
+    $(document).ready(function () {
+        $('#questions-list').multiselect(
+            {
+                nonSelectedText: 'Выберите вопросы для отображения',
+                nSelectedText: 'выбрано',
+                allSelectedText: 'Все выбраны'
+            });
+    });
+</script>
+
+@*<a href="#" id="username" data-type="text" data-placement="right" data-title="Enter username" class="editable editable-click editable editable-open">Задать фильтр</a>
+    <a href="#" id="status" data-type="text" data-placement="right" data-title="Enter status" class="editable editable-click editable editable-open">фильтр</a>*@
+
+<form action="@Url.Action("ExpertPoll")" method="post">
+
+    <div class="row col-md-10">
+        <select name="diagnosis" id="diagnosis-list" multiple="multiple">
+            @for (int i = 0; i < @QuestionsDataDefinitionModel.Diagnosis.Length; i++)
+            {
+                int @l = @i + 1;
+                <option value=D+@l.ToString()>@QuestionsDataDefinitionModel.Diagnosis[i]</option>
+            }
+        </select>
+        <select name="questions" id="questions-list" multiple="multiple">
+            @for (int i = 0; i < @QuestionsDataDefinitionModel.Queastions.Length; i++)
+            {
+                int @l = @i + 1;
+                <option value=@l.ToString()>@QuestionsDataDefinitionModel.Queastions[i]</option>
+            }
+        </select>
+        <div>
+            <button id="reset-btn" name="restore" class="btn pull-right">Сбросить изменения</button>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label for="filter">Задать фильтр</label>
+        <div class="row">
+            <div class="col-sm-2">
+                <input type="text" name="filter" class="form-control" /> @*pattern="\d+(\.\d{1,2})?"  проверяет, что введено десятичное число*@ 
+            </div>
+            <div class="col-sm-4">
+                <input class="btn btn-block btn-md btn-primary" type="submit" name="filter" data-ng-model="" value="Обновить таблицу"><br />
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12">
+        <div class="row">
+            <div class="col-sm-3">
+                <select name="nameTable" class="form-control top-left">
+                    <option value="BK_ApriorProb">Априорные вероятности</option>
+                    <option value="BK_ApriorProb_No">Априорные вероятности (Отриц)</option>
+                </select>
+            </div>
+            <div class="col-sm-5">
+                <input type="submit" name="load"  value="Загрузить выбранную таблицу" class="form-control top-left" />
+            </div>
+        </div>
+    </div>
+</form>
+
+    <form method="get" action="/Home/ExpertPoll">
+      
+       
+
+
+</form>
+    <br />
+
+
+@*<form action="@Url.Action("ExpertOpinion")" method="post">
+
+    @foreach (var e in ViewBag.specialties as IEnumerable<Specialty>)
+    {
+        <div class="col-md-4 col-lg-4">
+            <div class="alert alert-info text-center" role="alert">@e.Name</div>
+            <br />
+            @for (int i = 0; i < ViewBag.size; i++)
+            {
+
+                <label for="@ViewBag.names[i]">@ViewBag.names[i]:</label>
+                <input type="text" name="answer" id="@ViewBag.names[i]" class="form-control" pattern="\d+(\.\d{1,2})?" /><br />
+            }
+            <input type="submit" value="Send response" class="btn btn-lg btn-primary" />
+        </div>
+    }
+
+</form>*@

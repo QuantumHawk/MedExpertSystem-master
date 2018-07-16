@@ -1,0 +1,105 @@
+﻿@using MedExpertSystem.Database
+@*@model List<double>*@
+@using MedExpertSystem.Models
+@*@model System.Data.DataTable*@
+@model System.Data.DataSet
+@using System.Data;
+
+ 
+ 
+@{
+    ViewBag.Title = "ShowResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-2.2.3.min.js"></script>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <h3>Ваш результат прохождения теста: </h3>
+        <h4>Имя : @UserAnswer.Name</h4>
+        <h4>Фамилия : @UserAnswer.Surname</h4>
+        <h3>Данные представлены в таблице:</h3>
+       @* <table class="table table-bordered">*@
+            @*<thead>
+                <tr>
+                    @foreach (DataColumn col in Model.Columns)
+                    {
+                        <th><h5>@col.Caption </h5></th>
+                    }
+                </tr>
+            </thead>*@
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Код</th>
+                        <th>Диагноз</th>
+                        <th>Вероятность</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow row in Model.Tables[0].Rows)
+                    {
+                        <tr>
+                            @foreach (var cell in row.ItemArray)
+                            {
+                                <td>
+                                    <h5>@cell.ToString() </h5>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        <form action="@Url.Action("ShowResult", "Home", new { index = 1 })" method="post">
+            <div class="btn-group">
+                <input type="hidden" value="1" name="index" />
+                <input class="btn btn-lg btn-primary" type="submit" name="again" value="Пройти заново">
+                <input class="btn btn-lg btn-primary" type="submit" name="continue" value="Продолжить диагностику">
+                <input class="btn btn-lg btn-primary" type="submit" name="save" value="Сохранить данные">
+            </div>
+        </form>
+        @*<h3>График изменения вероятностей:</h3>
+            @Html.Partial("ShowMatrixDifference")
+            <hr/>
+        <h3>График изменения энтропии:</h3>
+            @Html.Partial("ShowBarSorted")*@
+        <h3>Вопросы-ответы</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Вопросы</th>
+                    <th>Ответы</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DataRow row in Model.Tables[1].Rows)
+                {
+                    <tr>
+                        @foreach (var cell in row.ItemArray)
+                        {
+                            <td>
+                                <h5>@cell.ToString() </h5>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

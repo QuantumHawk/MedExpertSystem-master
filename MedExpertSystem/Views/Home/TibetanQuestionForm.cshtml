@@ -1,0 +1,32 @@
+﻿@model MedExpertSystem.Models.TibetanQuestionsModel
+
+@*@{
+    ViewBag.Title = "TibetanQuestionForm";
+}*@
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <iv class="col-md-12">
+        <h3 class="center-block" style="text-align: center">
+            Вопрос по определению типа конституции:
+        </h3>
+        <h4></h4>
+        <form action="@Url.Action("TibetanQuestionForm", "Home", new { index = Model.Index })" method="post">
+            <input type="hidden" value="@Model.Index" name="index" />
+            <hr />
+            <h4 style="text-align: center">@Model.TibetanQuestionAnswerOptionOne</h4><br /><br />
+            <button name="tibetAnsw" value="0" class="btn btn-info btn-block">@Model.TibetanAnswerOne</button><br /><br />
+            <button name="tibetAnsw" value="1" class="btn btn-warning btn-block">@Model.TibetanAnswerTwo</button><br /><br />
+            <button name="tibetAnsw" value="2" class="btn btn-success btn-block">@Model.TibetanAnswerThree</button><br /><br />
+
+
+            <hr />
+            <button name="tibetAnsw" value="3" class="btn btn-lg btn-primary">Пропустить вопрос</button>
+
+            @*  <input class="btn btn-block btn-lg btn-primary" type="submit" value="Next question">*@
+        </form>
+    </div>
